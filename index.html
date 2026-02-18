@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Dhofiroh </title>
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+background:#1a243d;
+color:white;
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#0f172a;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+.hero{
+min-height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:40px 10%;
+background:#0f172a;
+}
+
+.hero-container{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:50px;
+flex-wrap:wrap;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
+
+}
+
+/* FOTO PROFILE */
+.profile{
+width:230px;
+height:230px;
+object-fit:cover;
+border-radius:50%;
+border:4px solid #38bdf8;
+box-shadow:0 0 30px rgba(56,189,248,.6);
+animation:float 3s ease-in-out infinite;
+}
+
+/* floating animation */
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0);}
+}
+
+/* BUTTON */
+.btn{
+margin-top:20px;
+padding:12px 25px;
+background:#38bdf8;
+border:none;
+border-radius:8px;
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+}
+
+/* SECTION */
+section{
+padding:80px 10%;
+}
+
+.section-title{
+text-align:center;
+font-size:32px;
+margin-bottom:40px;
+color:#38bdf8;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#020617;
+padding:25px;
+border-radius:12px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+background:#0ea5e9;
+}
+
+/* PROJECT */
+.project img{
+width:100%;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+/* CONTACT */
+input,textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+background:#0f172a;
+color:#94a3b8;
+margin-top:auto;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+.hero h1{
+font-size:34px;
+text-align:center;
+}
+.hero-container{
+flex-direction:column-reverse;
+text-align:center;
+}
+}
+
+/* ===== POPUP MODAL ===== */
+
+.modal{
+display:none;
+position:fixed;
+z-index:2000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+justify-content:center;
+align-items:center;
+animation:fadeIn .3s;
+}
+
+.modal-content{
+background:#020617;
+padding:20px;
+border-radius:15px;
+max-width:800px;
+width:90%;
+text-align:center;
+transform:scale(.7);
+animation:zoomIn .3s forwards;
+}
+
+.modal-content img{
+width:100%;
+height:420px;
+object-fit:contain;
+background:#020617;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+.close{
+position:absolute;
+top:20px;
+right:35px;
+font-size:35px;
+color:white;
+cursor:pointer;
+}
+
+/* ===== FOOTER FULL WIDTH ===== */
+
+.footer{
+width:100%;
+position:relative;
+left:0;
+right:0;
+}
+
+.footer-wrapper{
+width:100%;
+padding:40px 0;
+}
+
+.footer-container{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:30px;
+padding:0 20px;
+}
+
+.footer h3{
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.footer p{
+color:#94a3b8;
+font-size:14px;
+}
+
+.footer a{
+display:block;
+color:white;
+text-decoration:none;
+margin:6px 0;
+transition:.3s;
+}
+
+.footer a:hover{
+color:#38bdf8;
+transform:translateX(5px);
+}
+
+.footer-bottom{
+width:100%;
+text-align:center;
+padding:15px;
+border-top:1px solid rgba(148,163,184,.2);
+color:#94a3b8;
+font-size:14px;
+}
+
+@media(max-width:768px){
+.footer-container{
+flex-direction:column;
+text-align:center;
+}
+.footer a:hover{
+transform:none;
+}
+}
+
+@keyframes zoomIn{
+to{transform:scale(1);}
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+.project{
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<!-- POPUP MODAL -->
+<div id="portfolioModal" class="modal">
+
+<span class="close">&times;</span>
+
+<div class="modal-content">
+<img id="modalImg">
+<h3 id="modalTitle"></h3>
+<p id="modalDesc"></p>
+</div>
+
+</div>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<h2>Portfolio</h2>
+<div>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-container">
+
+<div>
+<h1>Halo, Saya <span id="typing"></span></h1>
+<p>Web Developer | UI/UX Designer </p>
+</div>
+
+
+<img src="images/profile.jpg.jpeg" class="profile" alt="Foto Profile">
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" data-aos="fade-up">
+<h2 class="section-title">About Me</h2>
+
+<p style="text-align:center;max-width:700px;margin:auto;">
+Saya merupakan fresh graduate Program Studi Sistem Informasi Telkom University angkatan 2022 yang memiliki minat pada bidang pemrograman, desain aplikasi, serta perancangan diagram proses bisnis. Saya memiliki pengalaman dalam pengembangan web menggunakan PHP, pengembangan aplikasi mobile dengan React Native, serta pembuatan website menggunakan framework Laravel, Bootstrap, dan PHP.
+</p>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2 class="section-title" data-aos="fade-up">Skills</h2>
+
+<div class="grid">
+<div class="card" data-aos="zoom-in">HTML & CSS</div>
+<div class="card" data-aos="zoom-in" data-aos-delay="100">JavaScript</div>
+<div class="card" data-aos="zoom-in" data-aos-delay="200">UI/UX Design</div>
+<div class="card" data-aos="zoom-in" data-aos-delay="300">PHP & MySQL</div>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<!-- PORTFOLIO -->
+<section id="portfolio">
+
+<h2 class="section-title" data-aos="fade-up">Portfolio</h2>
+<!-- ===== PENGELOLAAN PERUSAHAAN ===== -->
+<h3 style="margin-bottom:20px;color:#38bdf8;" data-aos="fade-right">
+Pengelolaan Perusahaan
+</h3>
+
+<div class="grid">
+
+<div class="card project" data-aos="fade-up">
+<img src="Images/Cobit.png" alt="Cobit">
+<h3>Analisa Tata Kelola Perusahaan</h3>
+<p>Menggunakan Tools Cobit-19 untuk membantu tata kelola perusahaan menggunakan 10 Domain Factory.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Bizagi.png" alt="Bizagi">
+<h3>Business Process Modeling</h3>
+<p>Pembuatan diagram BPMN dan analisis proses bisnis perusahaan menggunakan Bizagi Modeler.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Footprint Diagram.png" alt="Footprint">
+<h3>Footprint Diagram</h3>
+<p>Pembuatan footprint diagram untuk mengetahui alur komponen sistem perusahaan menggunakan Visual Paradigm.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Orange.png" alt="Orange">
+<h3>Klasterisasi Data</h3>
+<p>Membuat klasterisasi berdasarkan data perusahaan menggunakan tools Orange Data Mining.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/UML.png" alt="UML">
+<h3>UML Diagram</h3>
+<p>Membuat UML Diagram untuk mengetahui interaksi pengguna dengan sistem menggunakan Microsoft Visio.</p>
+</div>
+
+</div>
+
+
+<!-- ===== IT ===== -->
+<h3 style="margin:50px 0 20px;color:#38bdf8;" data-aos="fade-right">
+IT
+</h3>
+
+<div class="grid">
+
+<div class="card project" data-aos="fade-up">
+<img src="images/Aplikasi.png" alt="Aplikasi">
+<h3>Aplikasi Mobile Resep</h3>
+<p>Perancangan aplikasi mobile resep "ENAKEUN" menggunakan React Native dan Firebase yang dapat dijalankan melalui Expo Dev.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Figma.png" alt="Figma">
+<h3>Perancangan UI / UX</h3>
+<p>Pembuatan desain antarmuka website dan aplikasi berdasarkan kebutuhan pengguna menggunakan Figma.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Ondong.png" alt="OnDong">
+<h3>Perancangan Website OnDong</h3>
+<p>Pembuatan website membaca dongeng berbasis PHP Native dan CSS yang dapat diakses melalui perangkat mobile maupun desktop.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Tokobaju.png" alt="Toko Baju">
+<h3>Website Online Store Baju</h3>
+<p>Website toko baju online dengan fitur admin dan pengguna, termasuk sistem CRUD untuk pengelolaan stok dan transaksi.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Github.png" alt="Github">
+<h3>Pembaruan Kode Berkelompok</h3>
+<p>Kolaborasi pengembangan website dan aplikasi mobile menggunakan GitHub untuk manajemen versi dan integrasi kode tim.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Taqwatrip.jpeg" alt="Taqwatrip">
+<h3>Front End Website Pemesanan Tiket Haji</h3>
+<p>Pembuatan tampilan front-end website pemesanan tiket haji menggunakan PHP Native dan Bootstrap.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Neabeauty.jpeg" alt="Nea Beauty">
+<h3>Website Pemesanan Tissue</h3>
+<p> Website e-commerce tisu Nea Beauty dengan dashboard admin CRUD produk dan sistem pemesanan pengguna. Website dihosting melalui Domainesia.
+<br><br>
+
+<a href="https://neabeauty.my.id/"
+target="_blank" class="project-link">
+Lihat Website 
+</a>
+</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/Kalkulatorsederhana.png" alt="Nea Beauty">
+<h3>Kalkulator Sederhana</h3>
+<p>
+Website kalkulator penjumlahan untuk menghitung pemesanan pembelian bunga.
+Website ini dihosting di GitHub Pages:
+<br><br>
+
+<a href="https://firohazzah.github.io/index.html/"
+target="_blank" class="project-link">
+Lihat Website
+</a>
+</p>
+
+</div>
+</div>
+
+
+<!-- CONTACT -->
+<section id="contact" data-aos="fade-up">
+<h2 class="section-title">Contact</h2>
+
+<input type="text" id="nama" placeholder="Nama">
+<input type="email" id="email" placeholder="Email">
+<textarea id="pesan" rows="5" placeholder="Pesan"></textarea>
+
+<button class="btn" onclick="kirimWA()">Kirim</button>
+
+</section>
+
+
+<footer class="footer">
+
+<div class="footer-wrapper">
+
+<div class="footer-container">
+
+<div class="footer-left">
+<h3>Dhofiroh Azzah Labibah</h3>
+<p>Web Developer • UI/UX Designer • System Analyst</p>
+</div>
+
+<div class="footer-center">
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#contact">Contact</a>
+</div>
+
+<div class="footer-right">
+<a href="https://github.com/firohazzah" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/dhofiroh-azzah-labibah-a57326297/" target="_blank">LinkedIn</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 Dhofiroh Azzah Labibah | All Rights Reserved</p>
+</div>
+
+</footer>
+
+
+
+<!-- SCRIPT -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+duration:1000,
+once:true
+});
+
+/* Typing Animation */
+const text="Dhofiroh Azzah Labibah";
+let i=0;
+
+function typing(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,80);
+}
+}
+typing();
+
+</script>
+<script>
+
+
+</script>
+<script>
+const modal = document.getElementById("portfolioModal");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+const closeBtn = document.querySelector(".close");
+
+document.querySelectorAll(".project").forEach(card => {
+card.addEventListener("click", () => {
+
+const img = card.querySelector("img").src;
+const title = card.querySelector("h3").innerText;
+const desc = card.querySelector("p").innerText;
+
+modal.style.display = "flex";
+modalImg.src = img;
+modalTitle.innerText = title;
+modalDesc.innerText = desc;
+
+});
+});
+
+closeBtn.onclick = () => modal.style.display = "none";
+
+window.onclick = (e) => {
+if (e.target == modal) modal.style.display = "none";
+};
+
+document.addEventListener("keydown", (e) => {
+if (e.key === "Escape") modal.style.display = "none";
+});
+</script>
+
+<script>
+function kirimWA(){
+
+let nama = document.getElementById("nama").value;
+let email = document.getElementById("email").value;
+let pesan = document.getElementById("pesan").value;
+
+/* validasi sederhana */
+if(nama === "" || pesan === ""){
+alert("Nama dan pesan wajib diisi!");
+return;
+}
+
+/* format pesan */
+let text =
+"Halo, saya " + nama +
+"%0AEmail: " + email +
+"%0A%0APesan:%0A" + pesan;
+
+/* nomor WA (pakai kode negara 62, tanpa 0 depan) */
+let nomor = "6281615701811";
+
+/* buka whatsapp */
+window.open(
+"https://wa.me/" + nomor + "?text=" + text,
+"_blank"
+);
+
+}
+</script>
+
+
+</body>
+</html>
