@@ -299,6 +299,173 @@ to{opacity:1;}
 cursor:pointer;
 }
 
+/* ===== NAVBAR RESPONSIVE ===== */
+
+.menu-toggle{
+display:none;
+flex-direction:column;
+cursor:pointer;
+gap:5px;
+}
+
+.menu-toggle span{
+width:25px;
+height:3px;
+background:white;
+border-radius:3px;
+transition:.3s;
+}
+
+/* mobile */
+/* ===============================
+   NAVBAR MOBILE RAPIIH
+=================================*/
+@media(max-width:768px){
+
+nav{
+padding:18px 6%;
+}
+
+/* container menu */
+.nav-links{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:#0f172a;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+max-height:0;
+overflow:hidden;
+transition:.4s ease;
+
+border-top:1px solid rgba(148,163,184,.15);
+}
+
+/* link menu */
+.nav-links a{
+margin:0;
+padding:16px 0;
+width:100%;
+text-align:center;
+
+font-size:17px;
+font-weight:500;
+letter-spacing:.5px;
+
+border-bottom:1px solid rgba(148,163,184,.08);
+}
+
+/* hover mobile */
+.nav-links a:hover{
+background:#020617;
+color:#38bdf8;
+}
+
+/* menu aktif */
+.nav-links.active{
+max-height:320px;
+}
+
+/* hamburger */
+.menu-toggle{
+display:flex;
+}
+
+/* posisi navbar */
+nav{
+position:relative;
+}
+
+/* HERO biar ga kepencet navbar */
+.hero{
+padding-top:60px;
+}
+
+/* teks hero mobile lebih rapi */
+.hero h1{
+font-size:30px;
+line-height:1.3;
+}
+
+.hero p{
+font-size:16px;
+color:#94a3b8;
+}
+
+}
+/* ===== BUTTON DOWNLOAD CV ===== */
+/* ===== HERO BUTTON CV ===== */
+
+.hero-text{
+max-width:500px;
+}
+
+.hero-btn{
+margin-top:20px;
+}
+
+.btn-cv{
+display:inline-block;
+padding:12px 26px;
+background:#38bdf8;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-weight:600;
+transition:.3s;
+box-shadow:0 4px 15px rgba(56,189,248,.4);
+}
+
+.btn-cv:hover{
+background:#0ea5e9;
+transform:translateY(-2px);
+}
+@media(max-width:768px){
+
+.hero-text{
+text-align:center;
+}
+
+.hero-btn{
+display:flex;
+justify-content:center;
+}
+
+.btn-cv{
+width:auto;
+min-width:200px;
+text-align:center;
+}
+
+}
+
+/* ===== CERTIFICATION IMAGE ONLY ===== */
+
+.cert-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+align-items:center;
+}
+
+.cert-img{
+width:100%;
+border-radius:12px;
+cursor:pointer;
+transition:.4s;
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+/* hover effect */
+.cert-img:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 10px 30px rgba(56,189,248,.5);
+}
 </style>
 </head>
 
@@ -320,27 +487,47 @@ cursor:pointer;
 <!-- NAVBAR -->
 <nav>
 <h2>Portfolio</h2>
-<div>
+
+<!-- HAMBURGER -->
+<div class="menu-toggle" id="menuToggle">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="nav-links" id="navLinks">
 <a href="#about">About</a>
 <a href="#skills">Skills</a>
 <a href="#portfolio">Portfolio</a>
 <a href="#contact">Contact</a>
+<a href="#certification">Certification</a>
 </div>
 </nav>
-
 <!-- HERO -->
 <section class="hero">
+
 <div class="hero-container">
 
-<div>
-<h1>Halo, Saya <span id="typing"></span></h1>
-<p>Web Developer | UI/UX Designer </p>
+<!-- TEXT -->
+<div class="hero-text">
+<h1>Halo, Saya <p><span id="typing"></span></h1> </p>
+<p>Web Developer | UI/UX Designer</p>
+
+<div class="hero-btn">
+<a href="https://drive.google.com/file/d/1Ul5DrnMPU7ujyqm2gJ9hLYyzpg82IwEz/view?usp=sharing"
+target="_blank"
+class="btn-cv">
+⬇ Download CV
+</a>
 </div>
 
+</div>
 
+<!-- FOTO -->
 <img src="images/profile.jpg.jpeg" class="profile" alt="Foto Profile">
 
 </div>
+
 </section>
 
 <!-- ABOUT -->
@@ -369,7 +556,7 @@ Saya merupakan fresh graduate Program Studi Sistem Informasi Telkom University a
 <!-- PORTFOLIO -->
 <section id="portfolio">
 
-<h2 class="section-title" data-aos="fade-up">Portfolio</h2>
+<h2 class="section-title" data-aos="fade-up">Proyek yang pernah dikerjakan </h2>
 <!-- ===== PENGELOLAAN PERUSAHAAN ===== -->
 <h3 style="margin-bottom:20px;color:#38bdf8;" data-aos="fade-right">
 Pengelolaan Perusahaan
@@ -412,7 +599,7 @@ Pengelolaan Perusahaan
 
 <!-- ===== IT ===== -->
 <h3 style="margin:50px 0 20px;color:#38bdf8;" data-aos="fade-right">
-IT
+Information Technology
 </h3>
 
 <div class="grid">
@@ -483,6 +670,41 @@ Lihat Website
 </div>
 </div>
 
+<!-- CERTIFICATION -->
+<section id="certification">
+
+<h2 class="section-title" data-aos="fade-up">
+Certification
+</h2>
+
+<div class="cert-grid">
+
+<img src="images/BNSP.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in">
+
+<img src="images/SAP.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="150">
+
+<img src="images/KP_Telkomsel.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/finalis_bussinessplan.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/ICC_uiux.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/Oktan.png" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/Unair_entrepreneur.jpeg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/infovest.jpeg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/EPRT.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/Bookil_Ms.excel.jpg" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+
+<img src="images/Eduverse.png" class="cert-img" alt="Certificate" data-aos="zoom-in" data-aos-delay="300">
+</div>
+
+
+</section>
+
 
 <!-- CONTACT -->
 <section id="contact" data-aos="fade-up">
@@ -504,7 +726,7 @@ Lihat Website
 <div class="footer-container">
 
 <div class="footer-left">
-<h3>Dhofiroh Azzah Labibah</h3>
+<h3>Dhofiroh Azzah Labibah, S.Kom</h3>
 <p>Web Developer • UI/UX Designer • System Analyst</p>
 </div>
 
@@ -525,7 +747,7 @@ Lihat Website
 </div>
 
 <div class="footer-bottom">
-<p>© 2026 Dhofiroh Azzah Labibah | All Rights Reserved</p>
+<p>© 2026 Dhofiroh Azzah Labibah, S.Kom | All Rights Reserved</p>
 </div>
 
 </footer>
@@ -542,7 +764,7 @@ once:true
 });
 
 /* Typing Animation */
-const text="Dhofiroh Azzah Labibah";
+const text="Dhofiroh Azzah Labibah, S.Kom";
 let i=0;
 
 function typing(){
@@ -622,7 +844,23 @@ window.open(
 
 }
 </script>
+<script>
+const toggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
+toggle.addEventListener("click", () => {
+navLinks.classList.toggle("active");
+toggle.classList.toggle("active");
+});
+
+/* auto close setelah klik menu */
+document.querySelectorAll(".nav-links a").forEach(link=>{
+link.addEventListener("click",()=>{
+navLinks.classList.remove("active");
+toggle.classList.remove("active");
+});
+});
+</script>
 
 </body>
 </html>
