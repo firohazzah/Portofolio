@@ -565,7 +565,7 @@ Pengelolaan Perusahaan
 <div class="grid">
 
 <div class="card project" data-aos="fade-up">
-<img src="images/Cobit.png" alt="Cobit">
+<img src="Images/Cobit.png" alt="Cobit">
 <h3>Analisa Tata Kelola Perusahaan</h3>
 <p>Menggunakan Tools Cobit-19 untuk membantu tata kelola perusahaan menggunakan 10 Domain Factory.</p>
 </div>
@@ -641,14 +641,22 @@ Information Technology
 </div>
 
 <div class="card project" data-aos="fade-up" data-aos-delay="150">
+<img src="images/AI.jpeg" alt="Taqwatrip">
+<h3>Membuat AI kamera sign language untuk disabilitas tuna rungu</h3>
+<p>Membuat kamera untuk membmantu penderita disabilitas tuna rungu menggunakan fuzzy logic dan mengambil data dari kaggle untuk acuan sign language.</p>
+</div>
+
+<div class="card project" data-aos="fade-up" data-aos-delay="150">
 <img src="images/Neabeauty.jpeg" alt="Nea Beauty">
 <h3>Website Pemesanan Tissue</h3>
 <p> Website e-commerce tisu Nea Beauty dengan dashboard admin CRUD produk dan sistem pemesanan pengguna. Website dihosting melalui Domainesia.
 <br><br>
 
 <a href="https://neabeauty.my.id/"
-target="_blank" class="project-link">
-Lihat Website 
+   target="_blank"
+   class="project-link"
+   onclick="event.stopPropagation()">
+   Lihat Website 
 </a>
 </p>
 </div>
@@ -789,18 +797,25 @@ const modalDesc = document.getElementById("modalDesc");
 const closeBtn = document.querySelector(".close");
 
 document.querySelectorAll(".project").forEach(card => {
-card.addEventListener("click", () => {
+    card.addEventListener("click", () => {
 
-const img = card.querySelector("img").src;
-const title = card.querySelector("h3").innerText;
-const desc = card.querySelector("p").innerText;
+        const img = card.querySelector("img").src;
+        const title = card.querySelector("h3").innerText;
+        const desc = card.querySelector("p").innerHTML;
 
-modal.style.display = "flex";
-modalImg.src = img;
-modalTitle.innerText = title;
-modalDesc.innerText = desc;
+        modal.style.display = "flex";
+        modalImg.src = img;
+        modalTitle.innerText = title;
+        modalDesc.innerHTML = desc;
 
-});
+        // aktifkan link di dalam modal
+        modalDesc.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", function(e){
+                e.stopPropagation();
+            });
+        });
+
+    });
 });
 
 closeBtn.onclick = () => modal.style.display = "none";
