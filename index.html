@@ -201,6 +201,24 @@ text-align:center;
 }
 
 /* ===== POPUP MODAL ===== */
+.project video{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+#modalMedia img,
+#modalMedia video,
+#modalMedia iframe{
+width:100%;
+height:420px;
+object-fit:contain;
+border-radius:10px;
+background:#020617;
+margin-bottom:15px;
+}
 
 .modal{
 display:none;
@@ -500,7 +518,7 @@ box-shadow:0 10px 30px rgba(56,189,248,.5);
 <span class="close">&times;</span>
 
 <div class="modal-content">
-<img id="modalImg">
+<div id="modalMedia"></div>
 <h3 id="modalTitle"></h3>
 <p id="modalDesc"></p>
 </div>
@@ -669,7 +687,7 @@ Information Technology
 
 <div class="card project" data-aos="fade-up" data-aos-delay="150">
 <img src="images/Struk.jpeg" alt="Struk">
-<h3>Penyesuaian struk kwitansi</h3>
+<h3>Penyesuaian struk kwitansi (kiri Before ,kanan after) </h3>
 <p>Menghapus kolom pada struk kwitansi dan menyesuaikan font kwitansi agar seperti tampilan struk pada umumnya menggunakan CSS, Bootstrap dan PHP dengan framework laravel. </p>
 </div>
 
@@ -677,6 +695,14 @@ Information Technology
 <img src="images/Taqwatrip.jpeg" alt="Taqwatrip">
 <h3>Front End Website Pemesanan Tiket Haji</h3>
 <p>Pembuatan tampilan front-end website pemesanan tiket haji menggunakan PHP Native dan Bootstrap.</p>
+</div>
+
+<div class="card project" data-aos="fade-up">
+    <video controls>
+        <source src="images/Penyesuaian struk.mp4" type="video/mp4">
+    </video>
+    <h3>Perubahan Alur simpan kwitansi</h3>
+    <p>Pada bagian alur setelah checklist sebelumnya hanya status menjadi lunas dan gambar hanya bisa didownload melalui jpg kemudian dirubah menjadi adanya tampilan struk kwitansi pdf. Pada tampilan ini menggunakan PHP , CSS , dan Bootstrap yang menggunakan framework laravel dan database MySQL. </p>
 </div>
 
 <div class="card project" data-aos="fade-up" data-aos-delay="150">
@@ -830,7 +856,7 @@ typing();
 </script>
 <script>
 const modal = document.getElementById("portfolioModal");
-const modalImg = document.getElementById("modalImg");
+const modalMedia = document.getElementById("modalMedia"); // ganti dari modalImg
 const modalTitle = document.getElementById("modalTitle");
 const modalDesc = document.getElementById("modalDesc");
 const closeBtn = document.querySelector(".close");
@@ -838,16 +864,31 @@ const closeBtn = document.querySelector(".close");
 document.querySelectorAll(".project").forEach(card => {
     card.addEventListener("click", () => {
 
-        const img = card.querySelector("img").src;
+        const video = card.querySelector("video");
+        const iframe = card.querySelector("iframe");
+        const img = card.querySelector("img");
         const title = card.querySelector("h3").innerText;
         const desc = card.querySelector("p").innerHTML;
 
         modal.style.display = "flex";
-        modalImg.src = img;
         modalTitle.innerText = title;
         modalDesc.innerHTML = desc;
 
-        // aktifkan link di dalam modal
+        // reset isi modal
+        modalMedia.innerHTML = "";
+
+        // cek jenis media
+        if(video){
+            modalMedia.innerHTML = video.outerHTML;
+        } 
+        else if(iframe){
+            modalMedia.innerHTML = iframe.outerHTML;
+        } 
+        else if(img){
+            modalMedia.innerHTML = `<img src="${img.src}">`;
+        }
+
+        // supaya link tetap bisa diklik
         modalDesc.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", function(e){
                 e.stopPropagation();
@@ -857,14 +898,26 @@ document.querySelectorAll(".project").forEach(card => {
     });
 });
 
-closeBtn.onclick = () => modal.style.display = "none";
-
-window.onclick = (e) => {
-if (e.target == modal) modal.style.display = "none";
+// tombol close
+closeBtn.onclick = () => {
+    modal.style.display = "none";
+    modalMedia.innerHTML = ""; // stop video
 };
 
+// klik luar modal
+window.onclick = (e) => {
+    if (e.target == modal){
+        modal.style.display = "none";
+        modalMedia.innerHTML = "";
+    }
+};
+
+// tombol ESC
 document.addEventListener("keydown", (e) => {
-if (e.key === "Escape") modal.style.display = "none";
+    if (e.key === "Escape"){
+        modal.style.display = "none";
+        modalMedia.innerHTML = "";
+    }
 });
 </script>
 
